@@ -1,13 +1,16 @@
 import { useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Journal from './Journal';
+import Journal, { x } from './Journal';
 import React, { useState } from "react";
 import { FlatList, ScrollView, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity, Linking, View, Alert} from "react-native";
 import prompt from "@powerdesigninc/react-native-prompt";
+import {y} from './Journal';
+
 // function promptMe(){
 //   var num = prompt("Please provide a rating for your mood between 1-10");
 //   Alert.alert (userAdjective);
 // }
+
 const AppButton = () => {
   const title = "Rate Your Entry";
   const navigation = useNavigation();
@@ -80,7 +83,7 @@ const Mood = ({nm}) => {
     content = <Text style={{marginTop: 25,
       color: "blue",
       alignSelf: 'center',
-      //fontFamily: 'LexendExa-Regular',
+      fontFamily: 'LexendExa-Regular',
       fontSize: 25,
       marginLeft: 15,
       marginRight: 15 }}>Sad</Text>
@@ -88,7 +91,7 @@ const Mood = ({nm}) => {
     content = <Text style={{ marginTop: 25,
       color: "orange",
       alignSelf: 'center',
-      //fontFamily: 'LexendExa-Regular',
+      fontFamily: 'LexendExa-Regular',
       fontSize: 25,
       marginLeft: 15,
       marginRight: 15  }}>Happy</Text>
@@ -96,7 +99,7 @@ const Mood = ({nm}) => {
     content = <Text style={{ marginTop: 25,
       color: "red",
       alignSelf: 'center',
-      //fontFamily: 'LexendExa-Regular',
+      fontFamily: 'LexendExa-Regular',
       fontSize: 25,
       marginLeft: 15,
       marginRight: 15  }}>Angry</Text>
@@ -105,7 +108,7 @@ const Mood = ({nm}) => {
     content = <Text style={{ marginTop: 25,
       color: "green",
       alignSelf: 'center',
-      //fontFamily: 'LexendExa-Regular',
+      fontFamily: 'LexendExa-Regular',
       fontSize: 25,
       marginLeft: 15,
       marginRight: 15  }}>Disgusted</Text>
@@ -114,7 +117,7 @@ const Mood = ({nm}) => {
     content = <Text style={{ marginTop: 25,
       color: "purple",
       alignSelf: 'center',
-     // fontFamily: 'LexendExa-Regular',
+      fontFamily: 'LexendExa-Regular',
       fontSize: 25,
       marginLeft: 15,
       marginRight: 15  }}>Fearful</Text>
@@ -123,7 +126,7 @@ const Mood = ({nm}) => {
     content = <Text style={{ marginTop: 25,
       color: "brown",
       alignSelf: 'center',
-     // fontFamily: 'LexendExa-Regular',
+      fontFamily: 'LexendExa-Regular',
       fontSize: 25,
       marginLeft: 15,
       marginRight: 15  }}>Surprised</Text>
@@ -153,11 +156,13 @@ const Item = ({ item, onPress, backgroundColor, textColor }) => (
     <Text style={[styles.source, textColor]}>{item.source}</Text>
   </TouchableOpacity>
 );
-const nm=3;
+
+const nm = y;
 const Analysis = () => {
 const number=nm;
 const navigation = useNavigation();
 const [selectedId, setSelectedId] = useState(null);
+
 const renderItem = ({ item }) => {
   const backgroundColor = "#D3D3D3";
   // const color = item.id === selectedId ? 'white' : 'black';
@@ -200,13 +205,13 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
   },
   title: {
-   //fontFamily: 'LexendExa-Regular',
+   fontFamily: 'LexendExa-Regular',
     fontSize: 15,
   },
   text: {
     marginTop: 55,
     alignSelf: 'center',
-   //fontFamily: 'LexendExa-Regular',
+   fontFamily: 'LexendExa-Regular',
     color: '00352F',
     fontSize: 9,
     marginBottom: 10,
@@ -216,7 +221,7 @@ const styles = StyleSheet.create({
 mood: {
   marginTop: 60,
   alignSelf: 'center',
- //fontFamily: 'LexendExa-Regular',
+ fontFamily: 'LexendExa-Regular',
   fontSize: 15,
   marginLeft: 15,
   marginRight: 15
@@ -224,18 +229,18 @@ mood: {
 heading: {
   marginVertical: 20,
   alignSelf: 'center',
-  //fontFamily: 'LexendExa-Regular',
+  fontFamily: 'LexendExa-Regular',
   color: '00352F',
   fontSize: 20,
   marginLeft: 15,
   marginRight: 15
 },
   source: {
-   //fontFamily: 'LexendExa-Regular',
+   fontFamily: 'LexendExa-Regular',
     fontSize: 10,
   },
   Saved: {
-   //fontFamily: 'LexendExa-Regular',
+   fontFamily: 'LexendExa-Regular',
     alignSelf: 'center',
     color: 'black',
     fontSize: 20,
@@ -264,13 +269,13 @@ appButtonText: {
   fontSize: 18,
   color: "white",
   fontWeight: "bold",
- //fontFamily: 'LexendExa-Regular',
+ fontFamily: 'LexendExa-Regular',
   alignSelf: "center",
 },
 text3: {
   top: 50,
   alignSelf: 'center',
- //fontFamily: 'LexendExa-Regular',
+ fontFamily: 'LexendExa-Regular',
   color: '00352F',
   fontSize: 25,
   marginLeft: 25,
@@ -279,7 +284,7 @@ text3: {
 text2: {
 top: 60,
 alignSelf: 'center',
-//fontFamily: 'LexendExa-Regular',
+fontFamily: 'LexendExa-Regular',
 color: '00352F',
 fontSize: 25,
 marginLeft: 25,
@@ -288,10 +293,9 @@ marginRight: 25
 text1: {
 top: 30,
 alignSelf: 'center',
-//fontFamily: 'LexendExa-Regular',
+fontFamily: 'LexendExa-Regular',
 color: '00352F',
 fontSize: 17,
 },
 });
 export default Analysis;
-

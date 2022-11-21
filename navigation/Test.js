@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, TextInput, TouchableOpacity} from 'react-native
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-const Profile = () => {
+const Test = () => {
     return (
       <><View>
         <Text style={styles.heading}>Please answer the following questions about your mood</Text>
@@ -171,4 +171,4 @@ q3: {
       },
  });
   
-  export default Profile;
+  export default Test;
