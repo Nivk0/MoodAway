@@ -1,174 +1,167 @@
 import React, {useEffect, useState} from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, SafeAreaView, FlatList, Linking} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-const Profile = () => {
-    return (
-      <><View>
-        <Text style={styles.heading}>Please answer the following questions about your mood</Text>
-       <Text style={styles.q1}>1. Do you feel more happy than usual?</Text>
-       <Yes1/><No1/>
-       <Text style={styles.q2}>2. aad efuh asfiuw?</Text>
-       <Yes2/><No2/>
-       <Text style={styles.q3}>3. aad efuh asfiuw?</Text>
-       <Yes3/><No3/>
-    <AppButton />
-    
-      </View></>
- 
-       );
+const DATA = [
+  {
+
+    title: 'Coping with Sadness | How Right Now - CDC',
+    link: 'https://www.cdc.gov/howrightnow/resources/coping-with-sadness/index.html',
+    date: '11-28-22'
+  },
+  {
+    title: 'How to overcome fear and anxiety - Mental Health Foundation',
+    link: 'https://www.mentalhealth.org.uk/explore-mental-health/publications/how-overcome-fear-and-anxiety',
+    date: '11-28-22'
   }
-  const AppButton = ({ onPress }) => {
-    const title = "Generate Analysis";
-    return(
-    <TouchableOpacity onPress={onPress} style={styles.appButtonContainer}>
-      <Text style={styles.appButtonText}>{title}</Text>
-    </TouchableOpacity>
-    )
-   };
-  const Yes1 = ({ onPress }) => {
-    const title = "Yes";
-    return(
-    <TouchableOpacity onPress={onPress} style={styles.Button}>
-      <Text style={styles.appButtonText}>{title}</Text>
-    </TouchableOpacity>
-    )
-   };
-   const No1 = ({ onPress }) => {
-    const title = "No";
-    return(
-    <TouchableOpacity onPress={onPress} style={styles.Button}>
-      <Text style={styles.appButtonText}>{title}</Text>
-    </TouchableOpacity>
-    )
-   };
-   const Yes2 = ({ onPress }) => {
-    const title = "Yes";
-    return(
-    <TouchableOpacity onPress={onPress} style={styles.Button2}>
-      <Text style={styles.appButtonText}>{title}</Text>
-    </TouchableOpacity>
-    )
-   };
-   const No2 = ({ onPress }) => {
-    const title = "No";
-    return(
-    <TouchableOpacity onPress={onPress} style={styles.Button2}>
-      <Text style={styles.appButtonText}>{title}</Text>
-    </TouchableOpacity>
-    )
-   };
-   const Yes3 = ({ onPress }) => {
-    const title = "Yes";
-    return(
-    <TouchableOpacity onPress={onPress} style={styles.Button3}>
-      <Text style={styles.appButtonText}>{title}</Text>
-    </TouchableOpacity>
-    )
-   };
-   const No3 = ({ onPress }) => {
-    const title = "No";
-    return(
-    <TouchableOpacity onPress={onPress} style={styles.Button3}>
-      <Text style={styles.appButtonText}>{title}</Text>
-    </TouchableOpacity>
-    )
-   };
-   
+];
+const Item = ({ item, backgroundColor, textColor, onPress }) => (
+  <TouchableOpacity onPress = {onPress} style={[styles.item, backgroundColor]}>
+    <Text style={[styles.title]}>{item.title}</Text>
+    <Text style={[styles.date]}>Saved on: {item.date}</Text>
+    {/* <Text style={[styles.source, textColor]}>{item.source}</Text> */}
+  </TouchableOpacity>
+);
 
+const Saved = () => {
+const renderItem = ({ item }) => {
+  const backgroundColor = "#D3D3D3";
+  // const color = item.id === selectedId ? 'white' : 'black';
+  return (
+
+    <Item
+      item={item}
+      onPress={() => Linking.openURL(item.link)}
+      backgroundColor={{backgroundColor}}
+      textColor={'#808080'}
+    />
+  );
+};
+return (
+  <>
+
+
+  <SafeAreaView style={styles.container}>
+    <FlatList
+      data={DATA}
+      renderItem={renderItem}
+       />
+  </SafeAreaView></>
+);
+}
 const styles = StyleSheet.create({
-    
-    heading: {
-        top: 30,
-        alignSelf: 'center',
-        fontFamily: 'LexendExa-Regular',
-        color: '00352F',
-        fontSize: 16,
-        marginLeft: 10,
-        marginRight: 10,
-    },
-    
-    q1: {
-     top: 80,
-     alignSelf: 'center',
-     fontFamily: 'LexendExa-Regular',
-     color: '00352F',
-     fontSize: 14,
-     marginLeft: 10,
-     marginRight: 10,
- },
- q2: {
-    top: 100,
-    alignSelf: 'center',
+  container: {
+    flex: 1,
+  },
+  item: {
+    top: 10,
+    padding: 20,
+    marginVertical: 5,
+    marginHorizontal: 16,
+  },
+  buttonText: {
     fontFamily: 'LexendExa-Regular',
     color: '00352F',
-    fontSize: 14,
-    marginLeft: 10,
-    marginRight: 10,
-},
-q3: {
-    top: 120,
-    alignSelf: 'center',
+  },
+  title: {
+   fontFamily: 'LexendExa-Regular',
+    fontSize: 15,
+  },
+  date: {
     fontFamily: 'LexendExa-Regular',
+     fontSize: 10,
+   },
+  text: {
+    marginTop: 55,
+    alignSelf: 'center',
+   fontFamily: 'LexendExa-Regular',
     color: '00352F',
-    fontSize: 14,
-    marginLeft: 10,
-    marginRight: 10,
+    fontSize: 9,
+    marginBottom: 10,
+    marginLeft: 15,
+    marginRight: 15
 },
+mood: {
+  marginTop: 60,
+  alignSelf: 'center',
+ fontFamily: 'LexendExa-Regular',
+  fontSize: 15,
+  marginLeft: 15,
+  marginRight: 15
+},
+heading: {
+  marginVertical: 20,
+  alignSelf: 'center',
+  fontFamily: 'LexendExa-Regular',
+  color: '00352F',
+  fontSize: 20,
+  marginLeft: 15,
+  marginRight: 15
+},
+  source: {
+   fontFamily: 'LexendExa-Regular',
+    fontSize: 10,
+  },
+  Saved: {
+   fontFamily: 'LexendExa-Regular',
+    alignSelf: 'center',
+    color: 'black',
+    fontSize: 20,
+},
+appButtonContainer: {
+  elevation: 8,
+  backgroundColor: "#00352F",
+  borderRadius: 50,
+  paddingVertical: 13,
+  paddingHorizontal: 20,
+  marginLeft: 10,
+  marginRight: 10,
+  bottom: 20
+},
+appButton1stContainer: {
+  elevation: 8,
+  backgroundColor: "#00352F",
+  borderRadius: 50,
+  paddingVertical: 13,
+  paddingHorizontal: 20,
+  marginLeft: 10,
+  marginRight: 10,
+  marginTop: 20
+},
+appButtonText: {
+  fontSize: 18,
+  color: "white",
+  fontWeight: "bold",
+ fontFamily: 'LexendExa-Regular',
+  alignSelf: "center",
+},
+text3: {
+  top: 50,
+  alignSelf: 'center',
+ fontFamily: 'LexendExa-Regular',
+  color: '#00352F',
+  fontSize: 25,
+  marginLeft: 25,
+  marginRight: 25
+},
+text2: {
+top: 60,
+alignSelf: 'center',
+fontFamily: 'LexendExa-Regular',
+color: '#00352F',
+fontSize: 25,
+marginLeft: 25,
+marginRight: 25
+},
+text1: {
+top: 30,
+alignSelf: 'center',
+fontFamily: 'LexendExa-Regular',
+color: '#00352F',
+fontSize: 17,
+},
+});
 
-    Button: {
-      elevation: 4,
-      backgroundColor: "#00352F",
-      borderRadius: 100,
-      paddingVertical: 13,
-      paddingHorizontal: 30,
-      alignSelf: 'center',
-      marginTop:10,
-      top: 85
-    },
-    Button2: {
-        elevation: 4,
-        backgroundColor: "#00352F",
-        borderRadius: 100,
-        paddingVertical: 13,
-        paddingHorizontal: 30,
-        alignSelf: 'center',
-        marginTop:10,
-        top: 105
-      },
-      Button3: {
-        elevation: 4,
-        backgroundColor: "#00352F",
-        borderRadius: 100,
-        paddingVertical: 13,
-        paddingHorizontal: 30,
-        alignSelf: 'center',
-        marginTop:10,
-        top: 125
-      },
-    
-                
-    appButtonText: {
-      fontSize: 14,
-      color: "white",
-      fontWeight: "bold",
-      fontFamily: 'LexendExa-Regular',
-      alignSelf: "center",
-      
-    },
-  
-    
-    appButtonContainer: {
-        elevation: 8,
-        backgroundColor: "#00352F",
-        borderRadius: 50,
-        paddingVertical: 13,
-        paddingHorizontal: 20,
-        marginLeft: 10,
-        marginRight: 10,
-        top: 185
-      },
- });
-  
-  export default Profile;
+
+  export default Saved;
